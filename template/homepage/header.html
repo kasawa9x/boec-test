@@ -1,0 +1,136 @@
+
+{% load static %}
+
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i>0942558609</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> hongsonaaa@gmail.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+
+								<li><a href="https://www.facebook.com/hongson13499/"><i class="fa fa-facebook"></i></a></li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+						</div>
+<!--						<div class="btn-group pull-right">-->
+<!--							<div class="btn-group">-->
+<!--								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">-->
+<!--									USA-->
+<!--									<span class="caret"></span>-->
+<!--								</button>-->
+<!--								<ul class="dropdown-menu">-->
+<!--									<li><a href="#">Canada</a></li>-->
+<!--									<li><a href="#">UK</a></li>-->
+<!--								</ul>-->
+<!--							</div>-->
+
+<!--							<div class="btn-group">-->
+<!--								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">-->
+<!--									DOLLAR-->
+<!--									<span class="caret"></span>-->
+<!--								</button>-->
+<!--&lt;!&ndash;								<ul class="dropdown-menu">&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="#">Canadian Dollar</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="#">Pound</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;								</ul>&ndash;&gt;-->
+<!--							</div>-->
+<!--						</div>-->
+					</div>
+					<div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="{% static 'homepage/img/timonisa.png' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<div class="row">
+									{% if user.id is not null %}
+									<li><a href="{% url 'cart:showcart' user.id %}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                                    <span>{{cart_count}}</span>
+                                    {% else %}
+										<li><a href="login"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                                    <span>0</span>
+                                    {% endif %}
+								</li>
+
+									{% if user.id is null  %}
+									<li>
+									<a href="{% url 'core:login' %}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+									{% else %}
+									<a href="{% url 'core:logout' %}" class="login-panel"><i class="fa fa-user"></i>{{ user.username }} Đăng xuất </a>
+									{% endif %}
+									</div>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+		<div class="nav-item">
+
+            <div class="container">
+
+                <nav class="nav-menu mobile-menu">
+                     <ul> <div class="row">
+                        {% if user.id is not null %}
+                        <li class=""><a href="{% url 'core:index2' user.id  %}">Trang chủ </a></li>
+                        {% else %}
+                        <li class=""><a href="{% url 'core:index'%}">Trang chủ </a></li>
+                        {% endif %}
+
+                        {% if user.id is not null %}
+                        <li><a href="{% url 'product:shop' user.id 0 %}">Cửa hàng </a></li>
+                        {% else %}
+                        <li><a href="{% url 'product:shopno' 0 %}">Cửa hàng </a></li>
+                        {% endif %}
+						</div>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+
+<!--        </div>&lt;!&ndash;/header-bottom&ndash;&gt;-->
+<!--			<nav class="navbar navbar-inverse">-->
+<!--			  <div class="container-fluid">-->
+<!--				<div class="navbar-header">-->
+<!--				  <a class="navbar-brand" href="#">WebSiteName</a>-->
+<!--				</div>-->
+<!--				<ul class="row nav navbar-nav">-->
+
+<!--				  <li class="active"><a href="#">Home</a></li>-->
+<!--				  <li><a href="#">Link</a></li>-->
+<!--				  <li><a href="#">Link</a></li>-->
+
+<!--				</ul>-->
+<!--				<button class="btn btn-danger navbar-btn">Button</button>-->
+<!--			  </div>-->
+<!--			</nav>-->
+<!--		</div>-->
+</div>
+	</header><!--/header-->

@@ -1,0 +1,267 @@
+{% extends 'homepage/base.html' %}
+
+{% load static %}
+
+    {% block cssblock %}
+
+     <!-- Css Styles -->
+<link rel="stylesheet" href="{% static 'homepage/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/themify-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/style.css' %}" type="text/css">
+
+         <link href="{% static 'homepage/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/css/animate.css' %}" rel="stylesheet">
+	<link href="{% static 'homepage/css/main.css' %}" rel="stylesheet">
+	<link href="{% static 'homepage/css/responsive.css' %}" rel="stylesheet">
+    {% endblock %}
+
+    {% block content %}
+
+    <!-- Hero Section Begin -->
+
+
+
+	<section>
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Danh mục sản phẩm</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											Sách
+										</a>
+									</h4>
+								</div>
+
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											Thiết bị điện tử
+										</a>
+									</h4>
+								</div>
+
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											Quần áo
+										</a>
+									</h4>
+								</div>
+
+							</div>
+
+						</div><!--/category-products-->
+
+
+
+
+
+
+						<div class="shipping text-center"><!--shipping-->
+							<img src="images/home/shipping.jpg" alt="" />
+						</div><!--/shipping-->
+
+					</div>
+				</div>
+
+				<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Sách</h2>
+
+						<div class="row">
+						{% for item in list_var %}
+
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static '/img/upload/' %}{{ item.product.product_image }}" alt="yy" width=“200” height=“200” />
+											<h2>{{item.price}}</h2>
+											<p>{{item.title}}</p>
+											{% if cart %}
+											<a href="{% url 'cart:addtocart' item.product.id cart.id user.id %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+											{% else %}
+											<a href="{% url 'core:login' %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+											{% endif %}
+										</div>
+<!--										{% if user.id is not null %}-->
+<!--										<div class="product-overlay" hrep="{% url 'product:showproduct' user.id item.id %}">-->
+<!--											{% else %}-->
+<!--										<div class="product-overlay" hrep="{% url 'product:showproductno' item.id %}">-->
+<!--											{% endif %}-->
+<!--											<div class="overlay-content">-->
+<!--												<h2>{{item.price}}</h2>-->
+<!--													<p>{{item.title}}</p>-->
+<!--											</div>-->
+<!--										</div>-->
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										{% if user.id is not null %}
+										<li><a href="{% url 'product:showproduct' user.id item.id %}"><i class="fa fa-plus-square"></i>Xem hàng</a></li>
+										{% else %}
+										<li><a href="{% url 'product:showproductno' item.id %}"><i class="fa fa-plus-square"></i>Xem hàng</a></li>
+										{% endif %}
+									</ul>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					<div>
+
+
+					<!--features_items-->
+ <!-- Banner Section Begin -->
+
+    <!-- Banner Section End -->
+
+
+
+
+				</div>
+
+			<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Thiết bị điện tử</h2>
+
+						<div class="row">
+						{% for item in list_var2 %}
+
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static '/img/upload/' %}{{ item.product.product_image }}" alt="" />
+											<h2>{{item.price}}</h2>
+											<p>{{item.title}}</p>
+											{% if cart %}
+											<a href="{% url 'cart:addtocart' item.product.id cart.id user.id %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+											{% else %}
+											<a href="{% url 'core:login' %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+											{% endif %}
+										</div>
+<!--										{% if user.id is not null %}-->
+<!--										<div class="product-overlay" hrep="{% url 'product:showproduct' user.id item.id %}">-->
+<!--											{% else %}-->
+<!--										<div class="product-overlay" hrep="{% url 'product:showproductno' item.id %}">-->
+<!--											{% endif %}-->
+<!--											<div class="overlay-content">-->
+<!--												<h2>{{item.price}}</h2>-->
+<!--													<p>{{item.title}}</p>-->
+<!--											</div>-->
+<!--										</div>-->
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										{% if user.id is not null %}
+										<li><a href="{% url 'product:showproduct' user.id item.id %}"><i class="fa fa-plus-square"></i>Xem hàng</a></li>
+										{% else %}
+										<li><a href="{% url 'product:showproductno' item.id %}"><i class="fa fa-plus-square"></i>Xem hàng</a></li>
+										{% endif %}
+									</ul>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					<div>
+
+			<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Quần áo</h2>
+
+						<div class="row">
+						{% for item in list_var3 %}
+
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static '/img/upload/' %}{{ item.product.product_image }}" alt="" />
+											<h2>{{item.price}}</h2>
+											<p>{{item.title}}</p>
+											{% if cart %}
+											<a href="{% url 'cart:addtocart' item.product.id cart.id user.id %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+											{% else %}
+											<a href="{% url 'core:login' %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+											{% endif %}
+										</div>
+<!--										{% if user.id is not null %}-->
+<!--										<div class="product-overlay" hrep="{% url 'product:showproduct' user.id item.id %}">-->
+<!--											{% else %}-->
+<!--										<div class="product-overlay" hrep="{% url 'product:showproductno' item.id %}">-->
+<!--											{% endif %}-->
+<!--											<div class="overlay-content">-->
+<!--												<h2>{{item.price}}</h2>-->
+<!--													<p>{{item.title}}</p>-->
+<!--											</div>-->
+<!--										</div>-->
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										{% if user.id is not null %}
+										<li><a href="{% url 'product:showproduct' user.id item.id %}"><i class="fa fa-plus-square"></i>Xem hàng</a></li>
+										{% else %}
+										<li><a href="{% url 'product:showproductno' item.id %}"><i class="fa fa-plus-square"></i>Xem hàng</a></li>
+										{% endif %}
+									</ul>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					<div>
+			</div>
+		</div>
+
+
+	</section>
+
+    <!-- Women Banner Section End -->
+
+    {%  endblock %}
+
+    {%block jsblock %}
+
+   <script src="{% static 'homepage/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.zoom.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.dd.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'homepage/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'homepage/js/main.js' %}"></script>
+
+
+    <script src="{% static 'homepage/js/jquery.js' %}"></script>
+	<script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'homepage/js/jquery.scrollUp.min.js' %}"></script>
+	<script src="{% static 'homepage/js/price-range.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'homepage/js/main.js' %}"></script>
+
+    {% endblock %}
+
